@@ -1,0 +1,16 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Clone clsocket
+      uses: actions/checkout@v1
+    - name: Configure
+      run:
+        cmake -S . -B build -D CLSOCKET_EXAMPLES:BOOL=ON
+    - name: Build
+      run:
+        cmake --build build
